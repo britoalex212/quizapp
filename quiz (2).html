@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+*{
+				margin:0;
+				padding:0;
+				font-family:Times,"Times New Roman",serif;
+				}
+h1{
+				text-align:center;
+				color:brown;
+				}
+.container{
+				background-color:black;
+				padding:20px;
+				border-radius:10px;
+				border:20px solid brown;
+				width: 200px; 
+				height: 300px; 
+				position: absolute;
+				top:100px; 
+				left: 20px;
+				box-shadow:4px 4px 4px black;
+				}
+#status{
+				color:white;
+				}
+#board{
+				color:white;
+				}
+#btn{
+				color:blue;
+				background-color:white;
+				padding:10px;
+				border-radius:5px;
+				outline-style:none;
+				}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<h1>Quiz</h1><br><br>
+<p>What is the output of the program</p>
+<div class="container">
+<div id="status"></div>
+<div id="board"></div>
+</div>
+<script>
+var pos=0,i,qus,qs,A,B,C,D,choices,cor=0;
+
+qus=[["list1=['xyz ','zara','PYnative']  print(max(list1))",
+"a. Zara",
+"b. True",
+"c. PYnative",
+"d. False","A"],
+["2) sampleList = [10, 20, 30, 40] del sampleList[0:6] print(sampleList)",
+"a. list index out of range",
+"b. []",
+"c. [10,20]",
+"d. false","B"],
+["3) l = z[None] * 10 print(len(l))",
+"b. 10",
+"c. 0",
+"d. range","A"],
+["4) aList = [4, 8, 12, 16] aList[1:4] = [20, 24, 28] print(aList)",
+"a. [4, 20, 24, 28, 8, 12, 16]",
+"b. [4, 20, 24, 28]",
+"c. [ 24, 28]",
+"d. '[4, 20, 24, 28, 8]","C"],
+["5) sampleList = [10, 20, 30, 40, 50] sampleList.append(6) printf(samplelist) sampleList.append(60) print(sampleList)",
+"a. [10, 20, 30, 40, 50, 60] [10, 20, 30, 40, 50, 60]",
+"b. [10, 20, 30, 40, 50, 60] [10, 20, 30, 40, 50, 60, 60]",
+"c. [10, 20, 30, 40, 50, 60, 60]",
+"d. [10, 20, 30, 40, 50, 60] [10, 20, 30, 40, 50, 60, 60]","C"],
+["6) sampleList = [10, 20, 30, 40, 50] print(sampleList[-2]) print(sampleList[-4:-1])",
+"a. range",
+"b. 40[20, 30, 40]",
+"c. IndexError: list index out of range",
+"d. list index out of range","A"],
+["7) resList = [x+y for x in ['Hello ', 'Good '] for y in ['Dear', 'Bye']] print(resList)",
+"a. [‘Hello Dear’, ‘Hello Bye’, ‘Good Dear’, ‘Good Bye’]", 
+"b. [‘Hello Dear’, ‘Hello dear’, ‘Good Dear’, ‘Good Bye’]",
+"c. [‘Hello Dear’, ‘Hello dear’,]",
+"d. [‘Hello Dear’, ‘Hello dear’, ‘Good Dear’, ]","C"],
+["8) my_list = ['Hello', 'Python'] print('-'.join(my_list))",
+"a. HelloPython-",
+"b. HelloPython",
+"c. -HelloPython",
+"d. -Hello Python","C"],
+["9) listOne  =  ['a', 'b', 'c', 'd'] listTwo =  ['e', 'f', 'g']",
+"a.newList = listOne + listTwo",
+"b. newList = extend(listOne, listTwo)",
+"c. newList = listOne.extend(listTwo)",
+"d. newList.extend(listOne, listTwo)","C"],
+["10) aList = ['a', 'b', 'c', 'd']",
+"a. newList = copy(aList)"," b.newList = aList.copy()","c. newList.copy(aList)",
+"d. newList = list(aList)","D"]
+];
+var a=document.getElementById("status");
+var b=document.getElementById("board");
+function displaymsg(){
+				if(pos>=qus.length){
+								a.innerHTML="Quiz completed";
+								b.innerHTML="you got"+" "+cor+" "+"marks";
+								pos=0;
+								return false;
+								}
+				a.innerHTML="<h2>Questions"+" "+(pos+1)+" "+"of"+" "+qus.length+"</h2><br>";
+				qs=qus[pos][0];
+			  A=qus[pos][1];
+				 B=qus[pos][2];
+				 C=qus[pos][3];
+				 D=qus[pos][4];
+				 b.innerHTML="<label>"+qs+"</label><br><br>";
+				 b.innerHTML+="<input type='radio' name='choices' value='A'>"+A+"<br>";
+				 b.innerHTML+="<input type='radio' name='choices' value='B'>"+B+"<br>";
+				 b.innerHTML+="<input type='radio' name='choices' value='C'>"+C+"<br>";
+				 b.innerHTML+="<input type='radio' name='choices' value='D'>"+D+"<br><br>";
+				 b.innerHTML+="<button onclick='next()' id='btn'>Submit</button>"
+				}
+displaymsg();
+function next(){
+			 var choice;	ch=document.getElementsByName("choices");
+				for(i=0;i<ch.length;i++){
+								if(ch[i].checked){
+												choice=ch[i].value;
+												}
+								}
+					if(choice==qus[pos][5]){
+												cor++;
+												}
+				pos++;
+				displaymsg();	
+				}
+</script>
+</body>
+</html>
